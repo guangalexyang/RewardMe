@@ -1,23 +1,13 @@
-//
-//  RewardMeApp.swift
-//  RewardMe
-//
-//  Created by Alex Yang on 2026-05-01.
-//
-
 import SwiftUI
 import SwiftData
 
 @main
 struct RewardMeApp: App {
     var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
+        let schema = Schema([Child.self, Rule.self, PointEvent.self, Redemption.self])
+        let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return try ModelContainer(for: schema, configurations: [config])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
